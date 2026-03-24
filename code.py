@@ -1,8 +1,9 @@
+#Import all necessary Libararies
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.datasets import load_breast_cancer
+from sklearn.datasets import load_breast_cancer #Pre Defined Dataset
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
@@ -13,7 +14,7 @@ data = load_breast_cancer()
 
 X = data.data
 y = data.target
-
+#Print Shape
 print("Shape of X:", X.shape)
 print("Shape of y:", y.shape) #Shape has 1 column, which is expected for a target variable
 
@@ -21,6 +22,7 @@ print("Shape of y:", y.shape) #Shape has 1 column, which is expected for a targe
 df = pd.DataFrame(X, columns=data.feature_names)
 df['target'] = y
 
+#Data Preprocessing/EDA
 print("Dataset Head:")
 print(df.head())
 
@@ -33,22 +35,22 @@ print(df.describe())
 print("\nMissing Values:")
 print(df.isnull().sum().sort_values(ascending=False).head(20))
 
-# Train Test Split
+#Train Test Split
 X_train, X_test, y_train, y_test = train_test_split(
     X,y,test_size=0.2, random_state=42,
     stratify=y #to maintain the same distribution of classes in train and test sets
     )
 
-# Feature Scaling
+#Feature Scaling
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-# Train the Logistic Regression model
+#Train the Logistic Regression model
 model = LogisticRegression()
 model.fit(X_train_scaled, y_train)
 
-# Predictions
+#Predictions
 y_pred = model.predict(X_test_scaled)
 y_pred_prob = model.predict_proba(X_test_scaled)[:, 1] #probability of the positive class (malignant)
 
@@ -70,7 +72,7 @@ first 5 test samples are all very close to either 0 or 1, indicating strong conf
 model's predictions for those samples.
 '''
 
-# Evaluation
+#Evaluation
 print("\nConfusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
 
@@ -86,7 +88,7 @@ sns.heatmap(confusion_matrix(y_test, y_pred), annot=True, fmt='d', cmap='Blues')
 plt.xlabel('Predicted')
 plt.ylabel('Actual')
 plt.title('Confusion Matrix Heatmap')
-# plt.savefig("Confusion Matrix Heatmap.jpg")
+# plt.savefig("Confusion Matrix Heatmap.jpg") #Uncheck if you want to save the graph
 plt.show()
 
 

@@ -1,4 +1,4 @@
-# 🧬 Breast Cancer Classification
+# *🧬 Breast Cancer Classification*
 
 This repository contains a dataset and classification analysis for predicting breast cancer diagnosis (malignant vs. benign) using machine learning models trained on the **Breast Cancer Wisconsin (Diagnostic) Dataset**.
 

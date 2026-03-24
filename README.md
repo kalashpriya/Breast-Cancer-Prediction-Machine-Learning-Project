@@ -67,7 +67,7 @@ A supervised machine learning classifier was trained to predict tumor diagnosis.
 ---
 
 ## 📂 Structure
-- `load_breast_cancer` → In-built toy datasets provided by scikit-learn.
+- `load_breast_cancer` → In-built toy datasets provided by scikit-learn. (imported at line 6)
 - `Confusion Matrix Heatmap` → Visualization of Confusion Matrix
 - `code.py` → Final code (run on Colab or VS Code)
 - `README.md` → Project documentation.
